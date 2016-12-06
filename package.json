@@ -1,6 +1,6 @@
 {
   "name": "nva-ui",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "react-native useful component collection",
   "main": "index.js",
   "repository": {

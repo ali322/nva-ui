@@ -1,4 +1,4 @@
-NVA UI [![CircleCI](https://circleci.com/gh/ali322/yarn-ui.svg?style=svg)](https://circleci.com/gh/ali322/yarn-ui) [![npm version](https://badge.fury.io/js/nva-ui.svg)](https://badge.fury.io/js/nva-ui)
+NVA UI [![CircleCI](https://circleci.com/gh/ali322/nva-ui.svg?style=svg)](https://circleci.com/gh/ali322/nva-ui) [![npm version](https://badge.fury.io/js/nva-ui.svg)](https://badge.fury.io/js/nva-ui)
 ===
 [![NPM](https://nodei.co/npm/nva-ui.png)](https://nodei.co/npm/nva-ui/)
 
