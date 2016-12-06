@@ -1,0 +1,5 @@
+node_modules/
+typings/
+.vscode/
+npm-debug.log
+example/node_modules/
