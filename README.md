@@ -7,8 +7,15 @@ A collection of useful components for React Native
 Install
 ===
 
-```javascript
+```bash
 npm install nva-ui --save
+```
+
+then you should link necessary libraries
+
+```bash
+react-native link react-native-spinkit
+react-native link react-native-vector-icons
 ```
 
 Useage

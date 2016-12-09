@@ -1,6 +1,6 @@
 {
   "name": "nva-ui",
-  "version": "0.0.2",
+  "version": "0.0.6",
   "description": "react-native useful component collection",
   "main": "index.js",
   "repository": {
@@ -24,7 +24,8 @@
   "license": "MIT",
   "dependencies": {
     "lodash": "^4.17.2",
-    "react-native-html-render": "^1.0.5",
+    "react-addons-shallow-compare": "^15.4.1",
+    "react-native-fence-html": "^1.0.6",
     "react-native-spinkit": "^0.1.5",
     "react-native-vector-icons": "^3.0.0"
   },

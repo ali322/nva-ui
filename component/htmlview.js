@@ -1,8 +1,6 @@
-'use strict'
-
 import React,{Component,PropTypes} from "react"
-import {View,Text,Image,StyleSheet,Dimensions,Linking} from "react-native"
-import HtmlRender from "react-native-html-render"
+import {Image,Dimensions,Linking,StyleSheet} from "react-native"
+import Html from "react-native-fence-html"
 
 const screenWidth = Dimensions.get("window").width
 
@@ -11,22 +9,21 @@ function uniqueId(min=1,max=10000){
     return min + Math.round(Math.random() * range)
 }
 
-class HtmlContent extends Component{
+class HtmlView extends Component{
     static propTypes = {
-        value:PropTypes.string,
+        content:PropTypes.string,
         style:PropTypes.object,
         maxImageWidth:PropTypes.number
     }
     static defaultProps = {
         maxImageWidth:screenWidth - 20,
         style:{},
-        value:""
+        content:""
     }
     constructor(props){
         super(props)
+        this._renderImg = this._renderImg.bind(this)
         this._handleLinkPress = this._handleLinkPress.bind(this)
-        this._renderNode = this._renderNode.bind(this)
-        this._onImageLoadEnd = this._onImageLoadEnd.bind(this)
         this._images = {}
         const _styles = {}
         for(let key in defaultHtmlStyles){
@@ -37,6 +34,13 @@ class HtmlContent extends Component{
             }
         }
         this._styles = StyleSheet.create(_styles)
+    }
+    _handleLinkPress(event,href){
+        Linking.canOpenURL(href).then(support=>{
+            if(support){
+                Linking.openURL(href)
+            }
+        }).catch(err=>console.log(err))
     }
     _onImageLoadEnd(uri,index){
         const {maxImageWidth} = this.props
@@ -53,40 +57,23 @@ class HtmlContent extends Component{
             })
         })
     }
-    _handleLinkPress(url){
-        Linking.canOpenURL(url).then(support=>{
-            if(support){
-                Linking.openURL(url)
-            }
-        }).catch(err=>console.log(err))
-    }
-    _renderNode(node,index,parent,type){
-        const nodeName = node.name
-        if(node.type === "block" && type === "block"){
-            if(nodeName === "img"){
-                const uri = node.attribs.src
-                if (/^\/\/.*/.test(uri)) {
-                    uri = 'http:' + uri
-                }
-                const imgId = uniqueId()
-                return (
-                    <View key={index}>
-                        <Image source={{uri:uri}} ref={view=>this._images[imgId]=view}
-                        style={this._styles.image} onLoadEnd={()=>this._onImageLoadEnd(uri,imgId)}/>
-                    </View>
-                )
-            }
+    _renderImg(htmlAttrs,children,passProps){
+        const imgId = uniqueId()
+        let uri = htmlAttrs.src
+        if (/^\/\/.*/.test(uri)) {
+            uri = 'http:' + uri
         }
+        return <Image source={{uri}} style={this._styles.image} ref={view=>this._images[imgId]=view} onLoadEnd={()=>this._onImageLoadEnd(uri,imgId)}/>
     }
     render(){
-        const {value} = this.props
+        const renderers = {img:this._renderImg}
         return (
-            <HtmlRender value={value} stylesheet={this._styles} onLinkPress={this._handleLinkPress} renderNode={this._renderNode}/>
+            <Html renderers={renderers} onLinkPress={this._handleLinkPress} htmlStyles={this._styles} html={this.props.content}/>
         )
     }
 }
 
-export default HtmlContent
+export default HtmlView
 
 const fontSize = 14
 const rowMargin = 5
