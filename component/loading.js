@@ -7,8 +7,6 @@ export default class Loading extends Component{
         color:"#333"
     }
     render(){
-        // const spinner = Platform.OS === "ios"?<ActivityIndicatorIOS animating={true} {...this.props}/>:
-        // <ProgressBarAndroid {...this.props}/>
         const spinner = <Spinner type="FadingCircleAlt" color={this.props.color} size={20}/>
         return (
             <View style={styles.loading}>{spinner}</View>
