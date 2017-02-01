@@ -25,6 +25,7 @@
   "dependencies": {
     "lodash": "^4.17.2",
     "react-addons-shallow-compare": "^15.4.1",
+    "react-native-camera": "git+https://github.com/lwansbrough/react-native-camera.git",
     "react-native-fence-html": "^1.0.6",
     "react-native-spinkit": "^0.1.5",
     "react-native-vector-icons": "^3.0.0"

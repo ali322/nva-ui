@@ -14,8 +14,11 @@ npm install nva-ui --save
 then you should link necessary libraries
 
 ```bash
+# component loading,loadmore needed
 react-native link react-native-spinkit
 react-native link react-native-vector-icons
+# component scanner needed
+react-native link react-native-camera
 ```
 
 Useage
